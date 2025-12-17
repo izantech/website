@@ -20,7 +20,7 @@
 
   /* Glass Theme Tokens */
   --color-glass-bg: rgb(255, 255, 255, 0.01);
-  --color-glass-bg-hover: rgb(255, 255, 255, 0.08);
+  --color-glass-bg-hover: rgb(255, 255, 255, 0.04);
   --color-glass-border: rgb(255, 255, 255, 0.05);
   --color-glass-border-highlight: rgb(255, 255, 255, 0.15);
   --color-glass-shadow: rgb(0, 0, 0, 0.3);
@@ -70,12 +70,62 @@ body {
   inset: 0;
   background: linear-gradient(
     in oklch to bottom,
-    oklch(0.18 0.025 200) 0%,
-    oklch(0.26 0.045 195) 40%,
-    oklch(0.24 0.055 310) 60%,
-    oklch(0.15 0.025 280) 100%
+    oklch(0.14 0.02 220) 0%,
+    oklch(0.16 0.03 200) 50%,
+    oklch(0.14 0.02 280) 100%
   );
   pointer-events: none;
+  overflow: hidden;
+}
+
+.bg-gradient::before,
+.bg-gradient::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 80%;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.bg-gradient::before {
+  background: radial-gradient(circle, oklch(0.4 0.13 195) 0%, transparent 60%);
+  top: 10%;
+  left: -30%;
+  animation: aurora-drift-1 25s ease-in-out infinite;
+}
+
+.bg-gradient::after {
+  background: radial-gradient(circle, oklch(0.35 0.13 310) 0%, transparent 60%);
+  bottom: 10%;
+  right: -30%;
+  animation: aurora-drift-2 30s ease-in-out infinite;
+}
+
+@keyframes aurora-drift-1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(10%, 15%) scale(1.1);
+  }
+  66% {
+    transform: translate(-5%, 5%) scale(0.95);
+  }
+}
+
+@keyframes aurora-drift-2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-15%, -10%) scale(1.05);
+  }
+  66% {
+    transform: translate(10%, -5%) scale(1.1);
+  }
 }
 
 
@@ -279,6 +329,8 @@ main {
     scale: 1.02;
     box-shadow:
       0 12px 40px 0 var(--color-glass-shadow-hover),
+      0 0 40px -10px oklch(0.5 0.15 195 / 0.4),
+      0 0 60px -15px oklch(0.45 0.15 310 / 0.3),
       inset 0 1px 0 0 var(--color-glass-inner-highlight-hover);
   }
 
@@ -296,6 +348,8 @@ main {
   scale: 1.02;
   box-shadow:
     0 12px 40px 0 var(--color-glass-shadow-hover),
+    0 0 40px -10px oklch(0.5 0.15 195 / 0.4),
+    0 0 60px -15px oklch(0.45 0.15 310 / 0.3),
     inset 0 1px 0 0 var(--color-glass-inner-highlight-hover);
 }
 
