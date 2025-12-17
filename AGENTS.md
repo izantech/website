@@ -71,31 +71,25 @@ All colors use CSS custom properties defined in `:root`:
 - `--color-accent` (#5de8ff) - Primary accent (cyan)
 - `--color-accent-hover` (#90f0ff) - Accent hover state
 - `--color-border` (#7a8a9a) - Visible borders
-- `--color-border-subtle` (rgba 8% white) - Subtle card borders
+- `--color-border-subtle` (rgb 8% white) - Subtle card borders
 
-**Utilities:**
+**Gradients (OKLCH for smoother interpolation):**
 
-- `--color-overlay` (rgba 5% white) - Overlay effects
-- `--color-surface` (#fff) - White surfaces (e.g., icon backgrounds)
-- `--color-gradient-start` (#5de8ff) - Gradient start (cyan)
-- `--color-gradient-end` (#ff90ff) - Gradient end (magenta)
+- `--color-gradient-start` (oklch 0.85 0.14 195) - Gradient start (cyan)
+- `--color-gradient-end` (oklch 0.78 0.18 320) - Gradient end (magenta)
+- `--color-grad-border-cyan` - Cyan glow for card borders
+- `--color-grad-border-magenta` - Magenta glow for card borders
 
-**Background Gradient (pre-blended for iOS):**
+**Glass Theme Tokens:**
 
-- `--color-gradient-cyan-dark` (#0a1a1f) - Top edge
-- `--color-gradient-cyan` (#0f2d34) - Upper transition (40%)
-- `--color-gradient-magenta` (#23182e) - Lower transition (60%)
-- `--color-gradient-magenta-dark` (#10101a) - Bottom edge
+- `--color-glass-bg` - Translucent card background
+- `--color-glass-bg-hover` - Hover state background
+- `--color-glass-border` - Subtle glass border
+- `--color-glass-shadow` - Card shadow
 
-**Dynamic opacity with `color-mix()`:**
+**OKLCH Color Usage:**
 
-```css
-/* 90% opacity background */
-background: color-mix(in srgb, var(--color-bg-secondary) 90%, transparent);
-
-/* 10% opacity for subtle backgrounds */
-background: color-mix(in srgb, var(--color-text-muted) 10%, transparent);
-```
+OKLCH is used for gradients to achieve smoother color transitions without muddy midpoints. Solid colors remain in hex/rgb for readability.
 
 ### Glass Card Component
 
@@ -195,14 +189,21 @@ Two-column flex layout for project cards:
 
 **Floating Particles:**
 
-- Canvas-based particle system with cyan/magenta particles
+- Canvas-based particle system with aurora-matched colors (hue 195 cyan, 310 magenta)
 - Density adapts to screen size
 - Disabled when `prefers-reduced-motion` is set
 
 **Scroll Progress (Mobile Only):**
 
-- Gradient progress bar at top of viewport
+- Gradient progress bar at top of viewport with glow effect
+- OKLCH glow shadows matching aurora theme
 - Only visible on screens ≤768px
+
+**Section Headers:**
+
+- Gradient "/" prefix added via CSS `::before` pseudo-element
+- Text uses gradient fill (`background-clip: text`)
+- Translations contain text only (no "/" in YAML files)
 
 **Status Indicator (Optional):**
 
@@ -313,31 +314,46 @@ All text colors meet WCAG AA contrast requirements (4.5:1):
 
 Note: The H1 uses gradient text (`background-clip: text`) which automated tools can't evaluate, but both gradient endpoints exceed contrast requirements.
 
-### Background Gradient
+### Background Gradient & Aurora Effect
 
-The background uses a fixed-position div with a linear gradient for iOS Safari safe area compatibility:
+The background uses a fixed-position div with an animated aurora effect:
 
 ```html
 <!-- In default.html -->
 <div class="bg-gradient" aria-hidden="true"></div>
 ```
 
+**Features:**
+
+- OKLCH linear gradient for smooth color interpolation
+- Animated aurora orbs (cyan/magenta) using `::before` and `::after` pseudo-elements
+- 25-30 second drift animations for organic movement
+- Positioned to avoid iOS status bar/home indicator areas
+
 ```css
 .bg-gradient {
   position: fixed;
   inset: 0;
   background: linear-gradient(
-    to bottom,
-    var(--color-gradient-cyan-dark) 0%,
-    var(--color-gradient-cyan) 40%,
-    var(--color-gradient-magenta) 60%,
-    var(--color-gradient-magenta-dark) 100%
+    in oklch to bottom,
+    oklch(0.14 0.02 220) 0%,
+    oklch(0.16 0.03 200) 50%,
+    oklch(0.14 0.02 280) 100%
   );
   pointer-events: none;
+  overflow: hidden;
+}
+
+.bg-gradient::before,
+.bg-gradient::after {
+  /* Animated aurora orbs */
+  filter: blur(80px);
+  opacity: 0.55;
+  animation: aurora-drift-1 25s ease-in-out infinite;
 }
 ```
 
-**iOS Safari Limitation:** Gradients with `rgba()`, `transparent`, or any opacity-related properties do not extend into safe areas. The solution uses fully opaque pre-blended colors that simulate the desired gradient effect.
+**iOS Safari Compatibility:** Aurora orbs are positioned away from screen edges (top: 10%, bottom: 10%) to maintain immersive status bar appearance.
 
 ## Animations
 
@@ -355,9 +371,19 @@ Available delay classes: `animate-delay-1` through `animate-delay-5` (0.1s incre
 
 Desktop hover effects use `@media (hover: hover) and (pointer: fine)`:
 
-- **Project cards:** Scale to 1.02x using CSS `scale` property
-- **Social links:** Lift up 3px with shadow
+- **Project cards:** Scale to 1.02x with aurora glow (cyan/magenta OKLCH shadows)
+- **Social links:** Scale to 1.15x with aurora glow effect
 - **Tags:** Highlight on parent card hover (coordinated)
+
+**Aurora Glow Effect:**
+
+Cards and social links use layered OKLCH box-shadows on hover:
+
+```css
+box-shadow:
+  0 0 40px -10px oklch(0.5 0.15 195 / 0.4),
+  /* cyan glow */ 0 0 60px -15px oklch(0.45 0.15 310 / 0.3); /* magenta glow */
+```
 
 ### Tap Feedback (Mobile)
 

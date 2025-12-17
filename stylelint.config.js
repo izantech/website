@@ -9,8 +9,10 @@ module.exports = {
       },
     ],
     'no-descending-specificity': null,
-    'color-function-notation': 'legacy',
+    'color-function-notation': 'modern',
     'alpha-value-notation': 'number',
     'media-feature-range-notation': 'prefix',
+    'lightness-notation': null,
+    'hue-degree-notation': null,
   },
 };

@@ -8,7 +8,12 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
     <link rel="icon" type="image/svg+xml" href="{{ '/favicon.svg' | relative_url }}" />
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/favicon-32x32.png' | relative_url }}" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="{{ '/favicon-32x32.png' | relative_url }}"
+    />
     <link rel="apple-touch-icon" href="{{ '/apple-touch-icon.png' | relative_url }}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -37,7 +42,11 @@
           <span data-i18n="footer_made_with">{{ site.data.i18n.en.footer_made_with }}</span>
           <a href="https://jekyllrb.com" target="_blank" rel="noopener noreferrer">Jekyll</a>
         </p>
-        <div class="lang-switcher" role="radiogroup" aria-label="{{ site.data.i18n.en.tooltip_language }}">
+        <div
+          class="lang-switcher"
+          role="radiogroup"
+          aria-label="{{ site.data.i18n.en.tooltip_language }}"
+        >
           <button type="button" role="radio" data-lang="en" aria-checked="true">🇬🇧 English</button>
           <button type="button" role="radio" data-lang="es" aria-checked="false">🇪🇸 Español</button>
         </div>

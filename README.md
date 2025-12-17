@@ -5,10 +5,12 @@ Personal website built with Jekyll and hosted on GitHub Pages.
 ## Features
 
 - Dark theme with cyberpunk neon aesthetics
-- Glassmorphism card effects
+- Animated aurora background (cyan/magenta OKLCH gradients)
+- Glassmorphism cards with aurora glow hover effects
 - Client-side i18n (English/Spanish)
 - Fully accessible (WCAG 2.1 AA)
-- Responsive design
+- Floating particle system
+- Responsive design with iOS safe area support
 
 ## Development
 

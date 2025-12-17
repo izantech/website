@@ -38,7 +38,7 @@
       this.speedX = (Math.random() - 0.5) * 0.3;
       this.speedY = (Math.random() - 0.5) * 0.3;
       this.opacity = Math.random() * 0.5 + 0.1;
-      this.hue = Math.random() > 0.5 ? 185 : 300;
+      this.hue = Math.random() > 0.5 ? 195 : 310;
     }
 
     update() {

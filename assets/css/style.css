@@ -8,32 +8,30 @@
   --color-accent: #5de8ff;
   --color-accent-hover: #90f0ff;
   --color-border: #7a8a9a;
-  --color-border-subtle: rgb(255, 255, 255, 0.08);
-  --color-overlay: rgb(255, 255, 255, 0.05);
+  --color-border-subtle: rgb(255 255 255 / 0.08);
+  --color-overlay: rgb(255 255 255 / 0.05);
   --color-surface: #fff;
-  --color-gradient-start: #5de8ff;
-  --color-gradient-end: #ff90ff;
-  --color-gradient-cyan-dark: #0a1a1f;
-  --color-gradient-cyan: #0f2d34;
-  --color-gradient-magenta: #23182e;
-  --color-gradient-magenta-dark: #10101a;
+
+  /* Gradients use OKLCH for smoother color interpolation */
+  --color-gradient-start: oklch(0.85 0.14 195);
+  --color-gradient-end: oklch(0.78 0.18 320);
 
   /* Glass Theme Tokens */
-  --color-glass-bg: rgb(255, 255, 255, 0.01);
-  --color-glass-bg-hover: rgb(255, 255, 255, 0.04);
-  --color-glass-border: rgb(255, 255, 255, 0.05);
-  --color-glass-border-highlight: rgb(255, 255, 255, 0.15);
-  --color-glass-shadow: rgb(0, 0, 0, 0.3);
-  --color-glass-shadow-hover: rgb(0, 0, 0, 0.4);
-  --color-glass-shadow-sm: rgb(0, 0, 0, 0.2);
-  --color-glass-inner-highlight: rgb(255, 255, 255, 0.05);
-  --color-glass-inner-highlight-hover: rgb(255, 255, 255, 0.1);
+  --color-glass-bg: rgb(255 255 255 / 0.01);
+  --color-glass-bg-hover: rgb(255 255 255 / 0.04);
+  --color-glass-border: rgb(255 255 255 / 0.05);
+  --color-glass-border-highlight: rgb(255 255 255 / 0.15);
+  --color-glass-shadow: rgb(0 0 0 / 0.3);
+  --color-glass-shadow-hover: rgb(0 0 0 / 0.4);
+  --color-glass-shadow-sm: rgb(0 0 0 / 0.2);
+  --color-glass-inner-highlight: rgb(255 255 255 / 0.05);
+  --color-glass-inner-highlight-hover: rgb(255 255 255 / 0.1);
 
-  /* Gradient Border/Shine Tokens */
-  --color-grad-border-cyan: rgb(46, 200, 230, 0.3);
-  --color-grad-border-magenta: rgb(217, 70, 239, 0.3);
-  --color-grad-shine-cyan: rgb(46, 200, 230, 0.05);
-  --color-grad-shine-magenta: rgb(217, 70, 239, 0.05);
+  /* Gradient Border/Shine Tokens - OKLCH for smoother gradients */
+  --color-grad-border-cyan: oklch(0.75 0.12 195 / 0.3);
+  --color-grad-border-magenta: oklch(0.65 0.22 320 / 0.3);
+  --color-grad-shine-cyan: oklch(0.75 0.12 195 / 0.05);
+  --color-grad-shine-magenta: oklch(0.65 0.22 320 / 0.05);
 }
 
 * {
@@ -105,29 +103,34 @@ body {
 }
 
 @keyframes aurora-drift-1 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(0, 0) scale(1);
   }
+
   33% {
     transform: translate(10%, 15%) scale(1.1);
   }
+
   66% {
     transform: translate(-5%, 5%) scale(0.95);
   }
 }
 
 @keyframes aurora-drift-2 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(0, 0) scale(1);
   }
+
   33% {
     transform: translate(-15%, -10%) scale(1.05);
   }
+
   66% {
     transform: translate(10%, -5%) scale(1.1);
   }
 }
-
 
 .skip-link {
   position: absolute;
@@ -174,16 +177,13 @@ a:hover {
 
 .lang-switcher {
   display: flex;
-  background: var(--color-glass-bg);
-  border: 1px solid var(--color-glass-border);
-  border-radius: 8px;
-  padding: 3px;
-  gap: 2px;
+  background: transparent;
+  gap: 0.5rem;
 }
 
 .lang-switcher button {
   padding: 0.35rem 0.75rem;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 6px;
   background: transparent;
   color: var(--color-text-muted);
@@ -199,8 +199,9 @@ a:hover {
 }
 
 .lang-switcher button[aria-checked='true'] {
-  background: var(--color-glass-bg-hover);
-  color: var(--color-accent);
+  background: rgb(255 255 255 / 0.05);
+  border-color: var(--color-glass-border);
+  color: var(--color-text);
 }
 
 main {
@@ -258,6 +259,17 @@ main {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-header h2::before {
+  content: '/';
+  background: linear-gradient(135deg, var(--color-gradient-start), var(--color-gradient-end));
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
 }
 
 /* Shared Glass Styles */
@@ -273,7 +285,7 @@ main {
   overflow: hidden;
   box-shadow:
     0 4px 24px 0 var(--color-glass-shadow),
-    0 16px 48px -8px rgb(0, 0, 0, 0.25),
+    0 16px 48px -8px rgb(0 0 0 / 0.25),
     inset 0 1px 0 0 var(--color-glass-inner-highlight);
 }
 
@@ -647,14 +659,14 @@ button:focus-visible {
   0%,
   100% {
     box-shadow:
-      0 0 20px rgb(93, 232, 255, 0.3),
-      0 0 40px rgb(93, 232, 255, 0.1);
+      0 0 20px rgb(93 232 255 / 0.3),
+      0 0 40px rgb(93 232 255 / 0.1);
   }
 
   50% {
     box-shadow:
-      0 0 30px rgb(93, 232, 255, 0.5),
-      0 0 60px rgb(93, 232, 255, 0.2);
+      0 0 30px rgb(93 232 255 / 0.5),
+      0 0 60px rgb(93 232 255 / 0.2);
   }
 }
 
@@ -708,6 +720,9 @@ button:focus-visible {
   z-index: 1000;
   transition: width 0.1s linear;
   display: none;
+  box-shadow:
+    0 0 10px oklch(0.6 0.15 195 / 0.6),
+    0 0 20px oklch(0.5 0.12 310 / 0.4);
 }
 
 @media (max-width: 768px) {
@@ -749,7 +764,8 @@ button:focus-visible {
   scale: 1.15;
   box-shadow:
     0 8px 24px 0 var(--color-glass-shadow),
-    0 0 20px rgb(93, 232, 255, 0.2),
+    0 0 25px -5px oklch(0.5 0.15 195 / 0.5),
+    0 0 35px -8px oklch(0.45 0.15 310 / 0.4),
     inset 0 1px 0 0 var(--color-glass-inner-highlight-hover);
   color: var(--color-accent);
 }
@@ -770,7 +786,7 @@ button:focus-visible {
   display: inline-block;
   width: 3px;
   height: 1.2em;
-  background: var(--color-accent);
+  background: linear-gradient(180deg, var(--color-gradient-start), var(--color-gradient-end));
   margin-left: 4px;
   animation: blink 1s step-end infinite;
   vertical-align: text-bottom;
