@@ -406,6 +406,21 @@ All animations respect `prefers-reduced-motion: reduce`:
 }
 ```
 
+## Pre-commit Hooks
+
+Uses husky + lint-staged for automatic formatting on commit:
+
+- **`.husky/pre-commit`** - Runs `npx lint-staged`
+- **`package.json`** - lint-staged configuration
+
+**Staged file handling:**
+
+- `.js` files → ESLint fix + Prettier
+- `.css` files → Stylelint fix + Prettier
+- `.html/.md/.yml/.json` files → Prettier only
+
+After cloning, run `npm install` to set up hooks automatically (via `prepare` script).
+
 ## CI/CD Pipeline
 
 Automated build, test, and deployment via GitHub Actions (`.github/workflows/ci.yml`).

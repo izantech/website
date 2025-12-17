@@ -10,12 +10,28 @@
     "lint:css": "stylelint assets/css/**/*.css",
     "format": "prettier --write \"**/*.{js,css,html,md,yml,json}\"",
     "test:a11y": "pa11y-ci",
-    "test:a11y:single": "pa11y http://localhost:4000 --standard WCAG2AA --reporter cli"
+    "test:a11y:single": "pa11y http://localhost:4000 --standard WCAG2AA --reporter cli",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.css": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "*.{html,md,yml,json}": [
+      "prettier --write"
+    ]
   },
   "devDependencies": {
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
+    "husky": "^9.1.7",
     "jest": "^30.2.0",
+    "lint-staged": "^16.2.7",
     "pa11y": "^9.0.1",
     "pa11y-ci": "^4.0.1",
     "prettier": "^3.7.4",
