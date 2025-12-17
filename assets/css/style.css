@@ -69,14 +69,15 @@ body {
   position: fixed;
   inset: 0;
   background: linear-gradient(
-    to bottom,
-    var(--color-gradient-cyan-dark) 0%,
-    var(--color-gradient-cyan) 40%,
-    var(--color-gradient-magenta) 60%,
-    var(--color-gradient-magenta-dark) 100%
+    in oklch to bottom,
+    oklch(0.18 0.025 200) 0%,
+    oklch(0.26 0.045 195) 40%,
+    oklch(0.24 0.055 310) 60%,
+    oklch(0.15 0.025 280) 100%
   );
   pointer-events: none;
 }
+
 
 .skip-link {
   position: absolute;
@@ -213,15 +214,16 @@ main {
 .glass-card,
 .social-link {
   background: var(--color-glass-bg);
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(12px) saturate(1.2);
   /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
   border: 1px solid var(--color-glass-border);
   transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
   position: relative;
   overflow: hidden;
   box-shadow:
-    0 8px 32px 0 var(--color-glass-shadow),
+    0 4px 24px 0 var(--color-glass-shadow),
+    0 16px 48px -8px rgb(0, 0, 0, 0.25),
     inset 0 1px 0 0 var(--color-glass-inner-highlight);
 }
 
@@ -690,10 +692,12 @@ button:focus-visible {
 .social-link:hover {
   background: var(--color-glass-bg-hover);
   border-color: transparent;
-  scale: 1.1;
+  scale: 1.15;
   box-shadow:
     0 8px 24px 0 var(--color-glass-shadow),
+    0 0 20px rgb(93, 232, 255, 0.2),
     inset 0 1px 0 0 var(--color-glass-inner-highlight-hover);
+  color: var(--color-accent);
 }
 
 .social-link:hover::before,
