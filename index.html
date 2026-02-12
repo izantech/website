@@ -14,7 +14,7 @@ title: Home
   {% endif %}
 </section>
 
-<section class="section animate-fade-in-up animate-delay-1">
+<section class="section animate-fade-in-up" style="--delay: 1">
   <header class="section-header">
     <h2 data-i18n="section_about">{{ site.data.i18n.en.section_about }}</h2>
   </header>
@@ -28,7 +28,7 @@ title: Home
       <p data-i18n="about_text">{{ site.data.i18n.en.about_text }}</p>
     </div>
   </div>
-  <div class="social-links animate-fade-in-up animate-delay-2">
+  <div class="social-links animate-fade-in-up" style="--delay: 2">
     <a
       href="https://github.com/{{ site.github_username }}"
       target="_blank"
@@ -98,12 +98,12 @@ title: Home
   </div>
 </section>
 
-<section class="section animate-fade-in-up animate-delay-3">
+<section class="section animate-fade-in-up" style="--delay: 3">
   <header class="section-header">
     <h2 data-i18n="section_projects">{{ site.data.i18n.en.section_projects }}</h2>
   </header>
   <div class="projects">
-    <article class="glass-card project-card animate-fade-in-up animate-delay-4">
+    <article class="glass-card project-card animate-fade-in-up" style="--delay: 4">
       <div class="project-header">
         <h3>
           <a
@@ -126,7 +126,7 @@ title: Home
       </div>
     </article>
 
-    <article class="glass-card project-card animate-fade-in-up animate-delay-5">
+    <article class="glass-card project-card animate-fade-in-up" style="--delay: 5">
       <div class="project-header">
         <h3>
           <a
@@ -149,7 +149,7 @@ title: Home
       </div>
     </article>
 
-    <article class="glass-card project-card animate-fade-in-up animate-delay-6">
+    <article class="glass-card project-card animate-fade-in-up" style="--delay: 6">
       <div class="project-header">
         <h3>
           <a
@@ -172,7 +172,7 @@ title: Home
       </div>
     </article>
 
-    <article class="glass-card project-card animate-fade-in-up animate-delay-6">
+    <article class="glass-card project-card animate-fade-in-up" style="--delay: 6">
       <div class="project-header">
         <h3>
           <a
@@ -192,6 +192,29 @@ title: Home
         <span class="tag">Rust</span>
         <span class="tag">CLI</span>
         <span class="tag">Package Manager</span>
+      </div>
+    </article>
+
+    <article class="glass-card project-card animate-fade-in-up" style="--delay: 6">
+      <div class="project-header">
+        <h3>
+          <a
+            href="https://github.com/izantech/lineup"
+            target="_blank"
+            rel="noopener"
+            title="{{ site.data.i18n.en.tooltip_project_lineup }}"
+            aria-label="{{ site.data.i18n.en.tooltip_project_lineup }}"
+            data-i18n-a11y="tooltip_project_lineup"
+            >lineup</a
+          >
+        </h3>
+        {% include icons/claude-code.svg %}
+      </div>
+      <p data-i18n="project_lineup_desc">{{ site.data.i18n.en.project_lineup_desc }}</p>
+      <div class="project-tags">
+        <span class="tag">Claude Code</span>
+        <span class="tag">Dev Tools</span>
+        <span class="tag">Agentic Workflow</span>
       </div>
     </article>
   </div>

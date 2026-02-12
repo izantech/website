@@ -16,5 +16,7 @@ project_yup_desc: 'Herramienta CLI multiplataforma para actualizar paquetes en t
 tooltip_project_yup: 'Abre yup en una nueva pestaña'
 project_revenuecat_desc: 'CLI no oficial de la API v2 de RevenueCat para gestionar productos, offerings y clientes desde tu terminal.'
 tooltip_project_revenuecat: 'Abre revenuecat-cli en una nueva pestaña'
+project_lineup_desc: 'Plugin para Claude Code que introduce un flujo de trabajo multi-agente.'
+tooltip_project_lineup: 'Abre lineup en una nueva pestaña'
 status_available: 'Disponible para trabajar'
 footer_made_with: 'Hecho con'

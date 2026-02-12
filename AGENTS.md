@@ -362,10 +362,10 @@ The background uses a fixed-position div with an animated aurora effect:
 Staggered fade-in-up animations for page sections:
 
 ```html
-<section class="section animate-fade-in-up animate-delay-1"></section>
+<section class="section animate-fade-in-up" style="--delay: 1"></section>
 ```
 
-Available delay classes: `animate-delay-1` through `animate-delay-5` (0.1s increments)
+Set `--delay` to any integer N; the animation delay resolves to `N * 0.1s`
 
 ### Hover Animations (Desktop Only)
 
