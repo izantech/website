@@ -1,4 +1,5 @@
 source "https://rubygems.org"
 
-gem "github-pages", group: :jekyll_plugins
-gem "webrick" # Required for Ruby 3.0+
+gem "jekyll", "~> 4.4"
+gem "jekyll-seo-tag", "~> 2.8"
+gem "webrick", "~> 1.9"
