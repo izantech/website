@@ -74,7 +74,7 @@ title: Home
             >{{ project.name }}</a
           >
         </h3>
-        {% include icons/{{ project.icon }}.svg %}
+        {{ project.icon_svg }}
       </div>
       <div data-i18n="{{ project.i18n.description_key }}">
         {{ site.data.i18n.en[project.i18n.description_key] | markdownify }}

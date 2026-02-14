@@ -1,7 +1,0 @@
-<svg class="project-lang-icon" viewBox="0 0 128 128" aria-label="Kotlin">
-  <linearGradient id="kotlin-grad" x1="0%" y1="50%" x2="100%" y2="50%">
-    <stop offset="0%" stop-color="#E44857" />
-    <stop offset="100%" stop-color="#C711E1" />
-  </linearGradient>
-  <path fill="url(#kotlin-grad)" d="M0 0h65.4L0 64.4V0zM0 128 128 0H64.6L0 63.7V128zM128 128 64.6 63.7 0 128h128z" />
-</svg>
