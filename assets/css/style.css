@@ -485,11 +485,16 @@ main {
   color: var(--color-accent) !important;
 }
 
-.project-card p {
+.project-card p,
+.project-description p {
   color: var(--color-text-muted);
   margin-bottom: 1.5rem;
   line-height: 1.7;
   flex: 1;
+}
+
+.project-description {
+  margin-bottom: 1.5rem;
 }
 
 .project-tags {

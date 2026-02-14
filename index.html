@@ -76,7 +76,7 @@ title: Home
         </h3>
         {{ project.icon_svg }}
       </div>
-      <div data-i18n="{{ project.i18n.description_key }}">
+      <div class="project-description" data-i18n="{{ project.i18n.description_key }}">
         {{ site.data.i18n.en[project.i18n.description_key] | markdownify }}
       </div>
       <div class="project-tags">
