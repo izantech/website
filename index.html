@@ -88,3 +88,50 @@ title: Home
     {% endfor %}
   </div>
 </section>
+
+<section class="section animate-fade-in-up" style="--delay: 9">
+  <header class="section-header">
+    <h2 data-i18n="section_products">{{ site.data.i18n.en.section_products }}</h2>
+  </header>
+  <div class="projects">
+    {% assign sorted_products = site.data.products.products | sort: 'order' %} {% for product in
+    sorted_products %} {% assign delay = product.order | plus: 9 %}
+    <article class="glass-card project-card animate-fade-in-up" style="--delay: {{ delay }}">
+      <div class="project-header">
+        <h3>
+          <a
+            href="{{ product.url }}"
+            target="_blank"
+            rel="noopener"
+            title="{{ site.data.i18n.en[product.i18n.tooltip_key] }}"
+            aria-label="{{ site.data.i18n.en[product.i18n.tooltip_key] }}"
+            data-i18n-a11y="{{ product.i18n.tooltip_key }}"
+            >{{ product.name }}</a
+          >
+        </h3>
+        {{ product.icon_svg }}
+      </div>
+      <div class="project-description" data-i18n="{{ product.i18n.description_key }}">
+        {{ site.data.i18n.en[product.i18n.description_key] | markdownify }}
+      </div>
+      <div class="project-tags">
+        {% for tag in product.tags %}
+        <span class="tag">{{ tag.name }}</span>
+        {% endfor %}
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+  <p class="shop-cta animate-fade-in-up" style="--delay: 11">
+    <a
+      href="{{ site.shop_url }}"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="{{ site.data.i18n.en.tooltip_shop }}"
+      aria-label="{{ site.data.i18n.en.tooltip_shop }}"
+      data-i18n="shop_link"
+      data-i18n-a11y="tooltip_shop"
+      >{{ site.data.i18n.en.shop_link }}</a
+    >
+  </p>
+</section>

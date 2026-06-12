@@ -457,6 +457,17 @@ main {
   border-radius: 8px;
 }
 
+/* App icons ship their own shape and margins — no chip background */
+.project-app-icon {
+  background: none;
+  padding: 0;
+}
+
+.shop-cta {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
 .project-card h3 {
   font-size: 1.375rem;
   margin-bottom: 0;

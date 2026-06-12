@@ -9,6 +9,8 @@ Personal website hosted on Cloudflare Pages using Jekyll with automatic Git inte
 - **auto-builder**: Kotlin symbol processor that generates builder classes from annotated interfaces
 - **scrcpy-vscode**: VS Code extension for Android device mirroring
 
+Also features paid products (e.g. **AppClone**) in a separate "products" section that links to the shop at `https://shop.izantech.app`.
+
 ## Development Commands
 
 ```bash
@@ -29,6 +31,9 @@ bundle exec jekyll serve --livereload
 
 - `_config.yml` - Site configuration (title, description, email, plugins)
 - `_layouts/default.html` - Main page template
+- `_data/projects.yml` - Open-source project cards (name, URL, icon SVG, i18n keys, tags)
+- `_data/products.yml` - Paid product cards; tags follow platform / price / technology order
+- `_data/social.yml` - Social link platforms (icon SVG, URL template, config key)
 - `_data/i18n/en.yml` - English translations
 - `_data/i18n/es.yml` - Spanish translations
 - `assets/css/style.css` - Main stylesheet with CSS variables
@@ -143,6 +148,7 @@ Each project card displays a programming language icon:
 - 32x32px SVG icons with white rounded background
 - Positioned left of the title using `order: -1`
 - Inline SVGs for Kotlin (gradient) and TypeScript
+- Paid product cards use the app's own icon (`<img>`) with the `.project-app-icon` modifier, which removes the white chip background and padding
 
 ```css
 .project-lang-icon {
