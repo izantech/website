@@ -4,7 +4,10 @@ title: Home
 ---
 
 <section class="hero animate-fade-in-up">
-  <p class="hero-intro"><span class="typewriter"></span><span class="typewriter-cursor"></span></p>
+  <p class="hero-intro">
+    <span class="typewriter" data-i18n="hero_intro">{{ site.data.i18n.en.hero_intro }}</span
+    ><span class="typewriter-cursor"></span>
+  </p>
   <h1>Izan</h1>
   {% if site.show_status_indicator %}
   <div class="status-indicator">
@@ -20,9 +23,11 @@ title: Home
   </header>
   <div class="glass-card about-content">
     <img
-      src="https://github.com/{{ site.github_username }}.png"
+      src="https://avatars.githubusercontent.com/{{ site.github_username }}?size=240"
       alt="{{ site.title }}"
       class="about-avatar"
+      width="120"
+      height="120"
     />
     <div class="about-text">
       <p data-i18n="about_text">{{ site.data.i18n.en.about_text }}</p>

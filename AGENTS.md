@@ -36,8 +36,10 @@ bundle exec jekyll serve --livereload
 - `_data/social.yml` - Social link platforms (icon SVG, URL template, config key)
 - `_data/i18n/en.yml` - English translations
 - `_data/i18n/es.yml` - Spanish translations
-- `assets/css/style.css` - Main stylesheet with CSS variables
-- `assets/js/i18n.js` - Client-side i18n logic with typewriter effect (Jekyll-processed)
+- `assets/css/style.css` - Main stylesheet with CSS variables and self-hosted @font-face rules
+- `assets/fonts/` - Self-hosted woff2 fonts (JetBrains Mono variable 400-700, Rubik 700)
+- `assets/img/` - Local image assets (e.g. downsized AppClone icon)
+- `assets/js/i18n.js` - Client-side i18n logic (Jekyll-processed)
 - `assets/js/effects.js` - Visual effects: particles, scroll progress, copy email, easter egg (Jekyll-processed)
 - `index.html` - Home page content
 
@@ -54,6 +56,9 @@ bundle exec jekyll serve --livereload
 
 - **Body**: JetBrains Mono (monospace)
 - **Hero title**: Rubik 700 (uppercase, gradient text)
+- Fonts are self-hosted woff2 files in `assets/fonts/` (latin subset), preloaded in
+  `_layouts/default.html` and declared via `@font-face` in `style.css` — do not reintroduce
+  Google Fonts links (they were removed for performance: render-blocking cross-origin CSS)
 
 ### CSS Variables
 
@@ -187,11 +192,12 @@ Two-column flex layout for project cards:
 - Clicking the hero name copies the email address to clipboard
 - Shows a tooltip confirmation "Email copied!"
 
-**Typewriter Effect:**
+**Hero Intro Reveal:**
 
-- Hero intro text types out character by character
-- Respects `prefers-reduced-motion` preference
-- Restarts on language change
+- Hero intro text is server-rendered (visible on first paint, no JS dependency)
+- Revealed with a 0.4s CSS blur-in animation (`text-reveal` keyframes on `.typewriter`)
+- Blinking terminal cursor (`.typewriter-cursor`) follows the text
+- Translated through the standard `data-i18n` mechanism on language change
 
 **Floating Particles:**
 
@@ -292,7 +298,7 @@ The i18n system uses `innerHTML` to render HTML tags in translated content.
 - ARIA roles on main and footer
 - Screen reader only class `.sr-only`
 - Focus visible states for interactive elements
-- Reduced motion preference respected (particles, typewriter disabled)
+- Reduced motion preference respected (particles disabled, animations and delays zeroed)
 - Proper heading hierarchy (H1 → H2 → H3)
 - Tooltips and aria-labels on all interactive elements (`data-i18n-a11y` attribute)
 - Language switcher uses radiogroup pattern for accessibility
@@ -371,7 +377,8 @@ Staggered fade-in-up animations for page sections:
 <section class="section animate-fade-in-up" style="--delay: 1"></section>
 ```
 
-Set `--delay` to any integer N; the animation delay resolves to `N * 0.1s`
+Set `--delay` to any integer N; the animation delay resolves to `N * 0.04s` (kept short so
+content does not read as slow-loading; the last item on the page appears within ~0.9s)
 
 ### Hover Animations (Desktop Only)
 
@@ -408,6 +415,7 @@ All animations respect `prefers-reduced-motion: reduce`:
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
   }
 }
 ```

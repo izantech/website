@@ -1,31 +1,10 @@
 (function () {
   const translations = window.JEKYLL_DATA?.translations || {};
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let typewriterTimeout;
 
   function sanitizeHTML(str) {
     const temp = document.createElement('div');
     temp.textContent = str;
     return temp.innerHTML.replace(/&lt;(\/?)(b|i|em|strong|br|span)&gt;/gi, '<$1$2>');
-  }
-
-  function runTypewriter(text) {
-    const el = document.querySelector('.typewriter');
-    if (!el) return;
-    clearTimeout(typewriterTimeout);
-    el.textContent = '';
-    if (prefersReducedMotion) {
-      el.textContent = text;
-      return;
-    }
-
-    let i = 0;
-    (function type() {
-      if (i < text.length) {
-        el.textContent += text[i++];
-        typewriterTimeout = setTimeout(type, 50 + Math.random() * 50);
-      }
-    })();
   }
 
   function getLang() {
@@ -47,8 +26,6 @@
         el.setAttribute('aria-label', val);
       }
     });
-
-    if (t.hero_intro) runTypewriter(t.hero_intro);
 
     document.querySelectorAll('.lang-switcher button').forEach((btn) => {
       btn.setAttribute('aria-checked', btn.dataset.lang === lang);

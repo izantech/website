@@ -3,7 +3,7 @@ products:
     name: AppClone
     url: https://shop.izantech.app/appclone/
     icon: appclone
-    icon_svg: '<img class="project-lang-icon project-app-icon" src="https://shop.izantech.app/appclone/icons/icon-512.png" alt="AppClone" width="32" height="32" loading="lazy" />'
+    icon_svg: '<img class="project-lang-icon project-app-icon" src="/assets/img/appclone-icon-64.png" alt="AppClone" width="32" height="32" loading="lazy" />'
     i18n:
       tooltip_key: tooltip_product_appclone
       description_key: product_appclone_desc
